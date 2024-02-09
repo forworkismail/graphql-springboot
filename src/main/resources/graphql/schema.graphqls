@@ -1,8 +1,16 @@
 ﻿type Query {
     pets: [Pet]
+    owners: [Person]
+    favoritePet(ownerId: String!): Pet
+    petsByOwner(ownerId: String!): [Pet]
 }
 
 type Pet {
     name: String
-    color: String
+    owner: Person
+}
+
+type Person {
+    firstName: String
+    lastName: String
 }
