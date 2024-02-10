@@ -5,9 +5,11 @@ type Query {
     owners: [Person]
     favoritePet(ownerId: String!): Pet
     petsByOwner(ownerId: String!): [Pet]
+    pet(id: ID!): Pet
 }
 
 type Pet {
+    id: ID!
     name: String
     owner: Person
     dateOfBirth: Date

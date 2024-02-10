@@ -42,4 +42,9 @@ class PetsController {
     Flux<Pet> petsByOwner(@Argument String ownerId) {
         return petService.petsByOwner(ownerId);
     }
+
+    @QueryMapping
+    Mono<Pet> pet(@Argument String id) {
+        return petService.pet(id);
+    }
 }

@@ -13,10 +13,16 @@ import java.util.Map;
 public class PetService {
     Flux<Pet> pets() {
         return Flux.just(
-                new Pet("Max", "1", new Date().toInstant().atZone(ZoneId.systemDefault()).toLocalDate()),
-                new Pet("Charlie", "2", new Date().toInstant().atZone(ZoneId.systemDefault()).toLocalDate()),
-                new Pet("Buddy", "3", new Date().toInstant().atZone(ZoneId.systemDefault()).toLocalDate()),
-                new Pet("Lucy", "1", new Date().toInstant().atZone(ZoneId.systemDefault()).toLocalDate()));
+                new Pet("1", "Max", "1", new Date().toInstant().atZone(ZoneId.systemDefault()).toLocalDate()),
+                new Pet("2", "Charlie", "2", new Date().toInstant().atZone(ZoneId.systemDefault()).toLocalDate()),
+                new Pet("3", "Buddy", "3", new Date().toInstant().atZone(ZoneId.systemDefault()).toLocalDate()),
+                new Pet("4", "Lucy", "1", new Date().toInstant().atZone(ZoneId.systemDefault()).toLocalDate()));
+    }
+
+    Mono<Pet> pet(String id) {
+        return pets()
+                .filter(pet -> pet.id().equals(id))
+                .next();
     }
 
     Flux<Person> owners() {
