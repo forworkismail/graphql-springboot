@@ -5,16 +5,18 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.Map;
 
 @Service
 public class PetService {
     Flux<Pet> pets() {
         return Flux.just(
-                new Pet("Max", "1"),
-                new Pet("Charlie", "2"),
-                new Pet("Buddy", "3"),
-                new Pet("Lucy", "1"));
+                new Pet("Max", "1", new Date().toInstant().atZone(ZoneId.systemDefault()).toLocalDate()),
+                new Pet("Charlie", "2", new Date().toInstant().atZone(ZoneId.systemDefault()).toLocalDate()),
+                new Pet("Buddy", "3", new Date().toInstant().atZone(ZoneId.systemDefault()).toLocalDate()),
+                new Pet("Lucy", "1", new Date().toInstant().atZone(ZoneId.systemDefault()).toLocalDate()));
     }
 
     Flux<Person> owners() {

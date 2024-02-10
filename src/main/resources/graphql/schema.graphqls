@@ -1,4 +1,6 @@
-﻿type Query {
+﻿scalar Date
+
+type Query {
     pets: [Pet]
     owners: [Person]
     favoritePet(ownerId: String!): Pet
@@ -8,6 +10,7 @@
 type Pet {
     name: String
     owner: Person
+    dateOfBirth: Date
 }
 
 type Person {

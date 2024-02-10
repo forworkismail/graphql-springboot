@@ -12,8 +12,6 @@ import java.util.Map;
 
 @Controller
 class PetsController {
-
-
     private final PetService petService;
 
     PetsController(PetService petService) {

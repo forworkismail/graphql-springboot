@@ -1,4 +1,6 @@
 package com.graphql.pet;
 
-public record Pet(String name, String ownerId) {
+import java.time.LocalDate;
+
+public record Pet(String name, String ownerId, LocalDate dateOfBirth) {
 }
