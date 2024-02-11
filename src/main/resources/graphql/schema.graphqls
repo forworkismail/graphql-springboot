@@ -8,6 +8,14 @@ type Query {
     pet(id: ID!): Pet
 }
 
+type Mutation {
+    updatePetName(id: ID!, name: String): UpdatePetNamePayload
+}
+
+type UpdatePetNamePayload {
+    pet: Pet
+}
+
 type Pet {
     id: ID!
     name: String

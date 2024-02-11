@@ -1,6 +1,7 @@
 package com.graphql.pet;
 
 import com.graphql.person.Person;
+import com.graphql.pet.dto.UpdatePetNamePayload;
 import org.springframework.stereotype.Service;
 
 import java.time.ZoneId;
@@ -47,5 +48,16 @@ public class PetService {
 
     public Optional<Pet> favoritePet(String ownerId) {
         return petsByOwner(ownerId).stream().findFirst();
+    }
+
+    public UpdatePetNamePayload updatePetName(String id, String name) {
+        List<Pet> updatedPets = pets().stream()
+                .map(p -> p.id().equals(id) ? new Pet(p.id(), name, p.ownerId(), p.dateOfBirth()) : p)
+                .toList();
+        Pet updatedPet = updatedPets.stream()
+                .filter(p -> p.id().equals(id))
+                .findFirst()
+                .orElseThrow();
+        return new UpdatePetNamePayload(updatedPet);
     }
 }
